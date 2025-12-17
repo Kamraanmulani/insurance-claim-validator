@@ -126,20 +126,6 @@ graph TB
     F3 --> G1
     E --> G2
     C --> G3
-
-    classDef clientClass fill:#e1f5ff,stroke:#01579b,stroke-width:2px
-    classDef apiClass fill:#fff9c4,stroke:#f57f17,stroke-width:3px
-    classDef serviceClass fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef modelClass fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    classDef dataClass fill:#fce4ec,stroke:#880e4f,stroke-width:2px
-    classDef externalClass fill:#e0e0e0,stroke:#424242,stroke-width:2px
-
-    class A1,A2,A3,A4 clientClass
-    class B apiClass
-    class C,D,E serviceClass
-    class F1,F2,F3 modelClass
-    class G1,G2,G3 dataClass
-    class H externalClass
 ```
 
 ### Data Flow Architecture
