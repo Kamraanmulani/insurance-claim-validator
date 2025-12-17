@@ -1,0 +1,106 @@
+# Exclude all markdown files except README.md
+*.md
+!README.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+venv/
+venv_gpu/
+env/
+ENV/
+.Python
+
+# Virtual environments
+venv/
+venv_gpu/
+env/
+ENV/
+.venv
+.env.local
+
+# Environment variables
+.env.local
+.env.*.local
+
+# Data directories
+ml-backend/data/uploads/
+ml-backend/data/qdrant_storage/
+ml-backend/data/mongodb/
+ml-backend/data/model_offload/
+ml-backend/data/*.json
+!ml-backend/data/.gitkeep
+
+# Test images (optional - uncomment if you want to exclude)
+# ml-backend/test_images/
+
+# Model files (large files)
+*.pt
+*.pth
+*.onnx
+*.bin
+*.h5
+*.pkl
+*.safetensors
+
+# Test outputs
+ml-backend/output_*.json
+ml-backend/test_output.json
+ml-backend/test_detection_output.json
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+._*
+
+# Docker
+.dockerignore
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Annotations and processed images
+ml-backend/data/uploads/annotated/
+ml-backend/data/uploads/processed/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+temp/
+tmp/
