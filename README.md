@@ -126,6 +126,22 @@ graph TB
     F3 --> G1
     E --> G2
     C --> G3
+
+    style A1 color:#000
+    style A2 color:#000
+    style A3 color:#000
+    style A4 color:#000
+    style B color:#000
+    style C color:#000
+    style D color:#000
+    style E color:#000
+    style F1 color:#000
+    style F2 color:#000
+    style F3 color:#000
+    style G1 color:#000
+    style G2 color:#000
+    style G3 color:#000
+    style H color:#000
 ```
 
 ### Data Flow Architecture
