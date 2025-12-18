@@ -33,47 +33,67 @@ def test_full_analysis():
         
         print(f"\n📋 Job ID: {result['job_id']}")
         
-        # Metadata
-        print("\n🔍 METADATA VALIDATION:")
-        metadata_risk = result['metadata']['metadata_risk_score']
-        print(f"  Risk Score: {metadata_risk}/10")
-        if result['metadata']['validation']['issues']:
-            print(f"  Issues: {', '.join(result['metadata']['validation']['issues'])}")
-        else:
-            print("  ✓ No metadata issues detected")
+        # Claim Information
+        print("\n📝 CLAIM INFORMATION:")
+        print(f"  Date: {result['claim_info']['date']}")
+        print(f"  Location: {result['claim_info']['location']}")
+        print(f"  Description: {result['claim_info']['description']}")
         
-        # Summary
-        summary = result['analysis']['summary']
-        print("\n📊 DAMAGE ASSESSMENT SUMMARY:")
-        print(f"  Severity Level: {summary['severity']}")
-        print(f"  Damage Score: {summary['damage_score']}/10")
-        print(f"  Consistency Score: {summary['consistency_score']}/10")
-        print(f"  Claim Consistent: {'✓ Yes' if summary['is_consistent'] else '✗ No'}")
+        # Get the report
+        report = result['report']
+        
+        # Damage Assessment
+        damage_assessment = report['damage_assessment']
+        print("\n📊 DAMAGE ASSESSMENT:")
+        print(f"  Severity: {damage_assessment['severity']}")
+        print(f"  Damage Score: {damage_assessment['score']}/10")
+        if damage_assessment.get('description'):
+            print(f"  Description: {damage_assessment['description']}")
         
         # Damaged Parts
-        print("\n🔧 DAMAGED PARTS IDENTIFIED:")
-        for part in summary['damaged_parts']:
-            print(f"  • {part}")
+        if damage_assessment.get('damaged_parts'):
+            print("\n🔧 DAMAGED PARTS IDENTIFIED:")
+            for part in damage_assessment['damaged_parts']:
+                print(f"  • {part}")
         
-        # LLaVA Analysis
-        llava = result['analysis']['llava_analysis']
-        print("\n🤖 AI DETAILED ANALYSIS:")
-        print(f"  {llava['parsed_analysis'].get('damage_description', 'N/A')}")
+        # Fraud Analysis
+        fraud_analysis = report['fraud_analysis']
+        print("\n🚨 FRAUD ANALYSIS:")
+        print(f"  Overall Score: {fraud_analysis['overall_score']}/10")
+        print(f"  Risk Level: {fraud_analysis['risk_level']}")
         
-        # Consistency
-        print("\n✅ CONSISTENCY CHECK:")
-        consistency_resp = result['analysis']['consistency_check']['consistency_response']
-        # Print full response
-        print(f"  Full Response:\n  {consistency_resp}")
-        print(f"  Consistency Score: {result['analysis']['consistency_check']['consistency_score']}/10")
-        print(f"  Is Consistent: {result['analysis']['consistency_check']['is_consistent']}")
+        if fraud_analysis.get('fraud_indicators'):
+            print("\n⚠️  FRAUD INDICATORS:")
+            for indicator in fraud_analysis['fraud_indicators']:
+                if isinstance(indicator, dict):
+                    print(f"  • {indicator.get('type', 'N/A')}: {indicator.get('description', 'N/A')} (Severity: {indicator.get('severity', 'N/A')})")
+                else:
+                    print(f"  • {indicator}")
         
-        # YOLO Detection
-        yolo_analysis = result['analysis']['yolo_detection']['analysis']
-        print("\n🎯 OBJECT DETECTION:")
-        print(f"  Vehicle Detected: {yolo_analysis.get('primary_vehicle_detected', False)}")
-        print(f"  Vehicle Type: {yolo_analysis.get('vehicle_type', 'Unknown')}")
-        print(f"  Total Detections: {yolo_analysis.get('total_detections', 0)}")
+        # Consistency Check
+        consistency = report.get('consistency_analysis', {})
+        if consistency:
+            print("\n✅ CONSISTENCY CHECK:")
+            print(f"  Score: {consistency.get('score', 'N/A')}/10")
+            print(f"  Is Consistent: {consistency.get('is_consistent', 'N/A')}")
+            if consistency.get('explanation'):
+                print(f"  Explanation: {consistency['explanation']}")
+        
+        # Final Decision
+        decision = report['decision']
+        print("\n⚖️  FINAL DECISION:")
+        print(f"  Recommendation: {decision['recommendation']}")
+        print(f"  Confidence: {decision['confidence']}")
+        if decision.get('explanation'):
+            print(f"  Explanation: {decision['explanation']}")
+        
+        # Visual Evidence
+        visual = report.get('visual_evidence', {})
+        if visual:
+            print("\n🎯 VISUAL EVIDENCE:")
+            print(f"  Vehicle Detected: {visual.get('vehicle_detected', 'N/A')}")
+            print(f"  Vehicle Type: {visual.get('vehicle_type', 'Unknown')}")
+            print(f"  Total Objects Detected: {visual.get('objects_detected', 0)}")
         
         print(f"\n📸 Annotated image available at: {result['annotated_image_url']}")
         
