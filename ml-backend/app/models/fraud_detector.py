@@ -123,12 +123,30 @@ class FraudDetector:
             from qdrant_client.models import PointStruct
             
             # Search for similar images in Qdrant
-            search_results = self.client.search(
-                collection_name=self.collection_name,
-                query_vector=hashes["phash_vector"],
-                limit=5,
-                score_threshold=threshold
-            )
+            search_results = None
+
+            # Newer clients: `query_points` (returns QueryResponse with .points)
+            if hasattr(self.client, "query_points"):
+                response = self.client.query_points(
+                    collection_name=self.collection_name,
+                    query=hashes["phash_vector"],
+                    limit=5,
+                    score_threshold=threshold,
+                )
+                search_results = response.points
+
+            # Older clients: `search` or `search_points` (return list[ScoredPoint])
+            elif hasattr(self.client, "search") or hasattr(self.client, "search_points"):
+                search_method = getattr(self.client, "search", None) or getattr(self.client, "search_points", None)
+                search_results = search_method(
+                    collection_name=self.collection_name,
+                    query_vector=hashes["phash_vector"],
+                    limit=5,
+                    score_threshold=threshold,
+                )
+
+            else:
+                raise AttributeError("QdrantClient has no compatible search method (query_points/search/search_points)")
             
             is_duplicate = len(search_results) > 0
             duplicate_details = []
