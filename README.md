@@ -756,27 +756,62 @@ The `ml-backend/test_images/` directory contains sample images for testing vario
 
 ## 🛠️ Technology Stack
 
-### Core Technologies
+### Full Technology Stack
 
-| Category | Technology | Version | Purpose |
-|----------|-----------|---------|---------|
-| **Backend Framework** | FastAPI | 0.100+ | REST API server |
-| **Runtime** | Python | 3.10+ | Application runtime |
-| **Web Server** | Uvicorn | Latest | ASGI server |
-| **Object Detection** | YOLOv10 | Latest | Damage detection |
-| **Vision-Language Model** | LLaVA | 13B | Damage analysis |
-| **Vector Database** | Qdrant | Latest | Duplicate detection |
-| **Database** | MongoDB | Latest | Claims storage |
-| **Model Runtime** | Ollama | Latest | LLaVA inference |
-| **Containerization** | Docker | 20.10+ | Deployment |
+| **Technology** | **Version** | **Category** | **Purpose** |
+|----------------|-------------|--------------|-------------|
+| **Frontend** |
+| React | 19.2.3 | Framework | UI Framework for building interactive interfaces |
+| React Router DOM | 7.11.0 | Routing | Client-side navigation and routing |
+| Tailwind CSS | 3.4.19 | Styling | Utility-first CSS framework |
+| Lucide React | 0.562.0 | UI Components | Icon library for modern UI |
+| Recharts | 3.6.0 | Visualization | Chart library for analytics dashboard |
+| Axios | 1.13.2 | HTTP Client | API communication |
+| **Backend (Node.js)** |
+| Express.js | 4.18.2 | Web Framework | RESTful API server |
+| MongoDB | 8.0.0 | Database | NoSQL database for claims storage |
+| Mongoose | 8.0.0 | ODM | MongoDB object modeling |
+| JWT | 9.0.2 | Authentication | Secure token-based authentication |
+| Bcrypt.js | 2.4.3 | Security | Password hashing |
+| Multer | 1.4.5 | File Upload | Multipart form data handling |
+| CORS | 2.8.5 | Middleware | Cross-origin resource sharing |
+| **ML Backend (Python)** |
+| FastAPI | Latest | Web Framework | High-performance API for ML services |
+| Uvicorn | Latest | ASGI Server | Production-grade async server |
+| PyTorch | Latest | Deep Learning | Neural network framework |
+| Transformers | Latest | NLP/Vision | Hugging Face model library |
+| Ultralytics YOLOv10 | Latest | Object Detection | Real-time damage detection |
+| LLaVA 13B | 13B | Vision-Language Model | Multimodal damage analysis |
+| OpenCV | Latest | Image Processing | Computer vision operations |
+| Pillow (PIL) | Latest | Image Handling | Image manipulation and EXIF extraction |
+| NumPy | Latest | Numerical Computing | Array operations and computations |
+| Bitsandbytes | Latest | Optimization | 4-bit/8-bit quantization for efficiency |
+| Accelerate | Latest | Model Optimization | Distributed training and inference |
+| ImageHash | Latest | Fraud Detection | Perceptual image hashing |
+| Qdrant | Latest | Vector Database | Similarity search and embeddings |
+| ExifRead | Latest | Metadata Extraction | EXIF data parsing from images |
+| Pydantic | Latest | Data Validation | Request/response schema validation |
+| **DevOps & Tools** |
+| Docker | Latest | Containerization | Application containerization |
+| Docker Compose | Latest | Orchestration | Multi-container orchestration |
+| Nodemon | 3.0.1 | Development | Auto-restart for Node.js |
+| dotenv | 16.3.1 | Configuration | Environment variable management |
+| Ollama | Latest | Model Serving | Local LLM/VLM inference engine |
 
-### Python Libraries
+### AI/ML Models
 
-- **Image Processing**: Pillow, OpenCV, imagehash
-- **Deep Learning**: PyTorch, Transformers, Ultralytics
-- **Metadata**: ExifRead
-- **API**: FastAPI, Pydantic, python-multipart
-- **Utilities**: python-dotenv, requests, numpy
+| **Model** | **Type** | **Purpose** | **Size** |
+|-----------|----------|-------------|----------|
+| YOLOv10m | Object Detection | Vehicle damage detection | Medium (yolov10m.pt) |
+| LLaVA | Vision-Language Model | Multimodal damage analysis | 13B parameters |
+
+### Key Technology Highlights
+
+- **Modern Stack**: React 19 + FastAPI for high performance
+- **AI-Powered**: YOLOv10 + LLaVA for intelligent claim validation
+- **Secure**: JWT authentication, bcrypt password hashing
+- **Scalable**: Docker containerization, microservices architecture
+- **Efficient**: Qdrant vector DB for fraud detection, quantization for model optimization
 
 ---
 
